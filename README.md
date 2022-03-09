@@ -1,14 +1,12 @@
-# Lightspeed - Coding Utility Library for Unity
+# Rhinox.Rendering - Rendering Utils for Unity
 
-[![openupm](https://img.shields.io/npm/v/com.rhinox.open.lightspeed?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.rhinox.open.lightspeed/)
+[![openupm](https://img.shields.io/npm/v/com.rhinox.open.rendering?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.rhinox.open.rendering/)
 
-Coding extensions library: New basic datatypes, static helper methods and extensions on Unity datatypes 
+Rendering Utils for Unity for both Standard rendering and URP.
 
 ## Optional dependencies
 
-- com.unity.mathematics (Native extensions)
-- com.unity.textmeshpro (TMP Extensions)
-- com.unity.addressables (Addressable Extensions)
+- com.unity.render-pipelines.universal (URP Extensions)
 
 # License
 
