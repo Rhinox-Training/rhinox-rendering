@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Rhinox.Rendering
 {
-    public class GrayOutScrptableRendererFeature : ScriptableRendererFeature
+    public class GrayOutScriptableRendererFeature : ScriptableRendererFeature
     {
         private const string _shader = "Custom/HSV_Shader";
 
