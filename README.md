@@ -4,6 +4,10 @@
 
 Rendering Utils for Unity for both Standard rendering and URP.
 
+## Dependencies
+
+- com.rhinox.open.lightspeed (https://github.com/Rhinox-Training/rhinox-lightspeed)
+
 ## Optional dependencies
 
 - com.unity.render-pipelines.universal (URP Extensions)
