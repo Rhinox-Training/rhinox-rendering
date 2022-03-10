@@ -1,3 +1,15 @@
-﻿{
-	"name": "com.rhinox.open.rendering"
+{
+    "name": "com.rhinox.open.rendering",
+    "references": [
+        "com.rhinox.open.lightspeed"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
