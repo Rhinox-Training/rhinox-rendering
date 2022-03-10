@@ -1,35 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Rhinox.Utilities;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-[Serializable]
-public class BlitRenderer : ScriptableRendererFeature
+namespace Rhinox.Rendering
 {
     [Serializable]
-    public struct BlitSettings
+    public class BlitRenderer : ScriptableRendererFeature
     {
-        public RenderPassEvent Event;
-        public Material Material;
-        
-        public RenderTexture TargetTexture;
-    }
+        [Serializable]
+        public struct BlitSettings
+        {
+            public RenderPassEvent Event;
+            public Material Material;
 
-    public BlitSettings settings;
+            public RenderTexture TargetTexture;
+        }
 
-    private BlitPass _pass;
-    
-    public override void Create()
-    {
-        _pass = new BlitPass(settings.Event, settings.Material, 0, name);
-    }
+        public BlitSettings settings;
 
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-    {
-        _pass.Setup(renderer.cameraColorTarget, settings.TargetTexture);
-        
-        renderer.EnqueuePass(_pass);
+        private BlitPass _pass;
+
+        public override void Create()
+        {
+            _pass = new BlitPass(settings.Event, settings.Material, 0, name);
+        }
+
+        public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+        {
+            _pass.Setup(renderer.cameraColorTarget, settings.TargetTexture);
+
+            renderer.EnqueuePass(_pass);
+        }
     }
 }
