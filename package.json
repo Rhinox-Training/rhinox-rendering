@@ -1,0 +1,27 @@
+{
+  "name": "com.rhinox.open.rendering",
+  "displayName": "Rhinox.Rendering - Rendering Utils for Unity",
+  "version": "0.1.0",
+  "unity": "2019.3",
+  "description": "Rendering Utils for Unity for both Standard rendering and URP.",
+  "keywords": [
+    "unity",
+    "rendering",
+    "urp"
+  ],
+  "category": "Unity",
+  "dependencies": {
+    "com.rhinox.open.lightspeed": "1.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhinox-Training/rhinox-rendering.git"
+  },
+  "author": "Rhinox",
+  "license": "Apache V.2",
+  "bugs": {
+    "url": "https://github.com/Rhinox-Training/rhinox-rendering/issues"
+  },
+  "homepage": "https://github.com/Rhinox-Training/rhinox-rendering#readme",
+  "type": "library"
+}
