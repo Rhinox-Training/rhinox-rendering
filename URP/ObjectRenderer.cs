@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Rhinox.Rendering
+namespace Rhinox.Rendering.Universal
 {
     [Serializable]
     public class ObjectRenderer : ScriptableRendererFeature
@@ -108,11 +108,10 @@ namespace Rhinox.Rendering
             // var cam = renderingData.cameraData.camera;
             // cmdBuff.SetProjectionMatrix(cam.projectionMatrix);
 
-            cmdBuff.SetRenderTarget(_targetTextureID);
+            cmdBuff.SetRenderTarget(_targetTextureID, 0, CubemapFace.Unknown, -1);
             cmdBuff.ClearRenderTarget(true, true, Color.clear);
 
-            DrawingSettings drawingSettings =
-                CreateDrawingSettings(ShaderTagIdList, ref renderingData, SortingCriteria.BackToFront);
+            DrawingSettings drawingSettings = CreateDrawingSettings(ShaderTagIdList, ref renderingData, SortingCriteria.BackToFront);
             drawingSettings.overrideMaterial = _material;
             drawingSettings.overrideMaterialPassIndex = 0;
             drawingSettings.enableDynamicBatching = true;
