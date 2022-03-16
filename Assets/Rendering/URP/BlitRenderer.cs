@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Rhinox.Rendering
+namespace Rhinox.Rendering.Universal
 {
     [Serializable]
     public class BlitRenderer : ScriptableRendererFeature

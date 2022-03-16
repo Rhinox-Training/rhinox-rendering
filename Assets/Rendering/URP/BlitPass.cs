@@ -1,10 +1,11 @@
+
 using System.Collections.Generic;
 using Rhinox.Lightspeed;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Rhinox.Rendering
+namespace Rhinox.Rendering.Universal
 {
     /// <summary>
     /// Copy the given color buffer to the given destination color buffer.

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Rhinox.Rendering
+namespace Rhinox.Rendering.Universal
 {
     public class RenderPass : ScriptableRenderPass
     {
@@ -38,7 +38,7 @@ namespace Rhinox.Rendering
 
             _cmdBuff.SetViewProjectionMatrices(cam.worldToCameraMatrix, cam.projectionMatrix);
 
-            _cmdBuff.SetRenderTarget(_settings.TargetTextureID);
+            _cmdBuff.SetRenderTarget(_settings.TargetTextureID, 0, CubemapFace.Unknown, -1);
             _cmdBuff.ClearRenderTarget(true, true, Color.clear);
         }
 
