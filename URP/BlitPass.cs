@@ -32,7 +32,7 @@ namespace Rhinox.Rendering.Universal
         protected RenderTargetHandle m_TemporaryColorTexture;
         protected string m_ProfilerTag;
 
-        private Dictionary<string, RenderTexture> _availableTextures;
+        private Dictionary<int, Texture> _availableTextures;
 
         /// <summary>
         /// Create the CopyColorPass
@@ -80,12 +80,14 @@ namespace Rhinox.Rendering.Universal
             this.destination = destination;
         }
 
-        public void RegisterTexture(string tag, RenderTexture tex)
+        public void RegisterTexture(int id, Texture tex)
         {
             if (_availableTextures == null)
-                _availableTextures = new Dictionary<string, RenderTexture>();
-            _availableTextures[tag] = tex;
+                _availableTextures = new Dictionary<int, Texture>();
+            _availableTextures[id] = tex;
         }
+        
+        public void RegisterTexture(string tag, Texture tex) => RegisterTexture(Shader.PropertyToID(tag), tex);
 
         /// <inheritdoc/>
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -98,12 +100,12 @@ namespace Rhinox.Rendering.Universal
 
             if (!_availableTextures.IsNullOrEmpty())
             {
-                foreach (var (tag, tex) in _availableTextures)
-                    cmd.SetGlobalTexture(tag, tex);
+                foreach (var (id, tex) in _availableTextures)
+                    cmd.SetGlobalTexture(id, tex);
             }
 
             // Can't read and write to same color target, create a temp render target to blit. 
-            if (destination == RenderTargetHandle.CameraTarget.id)
+            if (destination == RenderTargetHandle.CameraTarget.id || destination == source)
             {
                 cmd.GetTemporaryRT(m_TemporaryColorTexture.id, desc, filterMode);
                 

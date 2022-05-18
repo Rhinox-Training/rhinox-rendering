@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -20,6 +17,9 @@ public static class ShaderRefreshUtility
     
     public static void SetMaterialKeywords(Material material, Action<Material> shadingModelFunc, Action<Material> shaderFunc)
     {
+        if (material == null)
+            return;
+        
         // Clear all keywords for fresh start
         material.shaderKeywords = null;
 
@@ -32,7 +32,16 @@ public static class ShaderRefreshUtility
 
         // Emission
         if (material.HasProperty("_EmissionColor"))
-            MaterialEditor.FixupEmissiveFlag(material);
+        {
+            var color = material.GetColor("_EmissionColor");
+            var flags = material.globalIlluminationFlags;
+            if ((flags & MaterialGlobalIlluminationFlags.BakedEmissive) != MaterialGlobalIlluminationFlags.None && color.maxColorComponent == 0.0)
+                flags |= MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            else if (flags != MaterialGlobalIlluminationFlags.EmissiveIsBlack)
+                flags &= MaterialGlobalIlluminationFlags.AnyEmissive;
+            material.globalIlluminationFlags = flags;
+        }
+        
         bool shouldEmissionBeEnabled =
             (material.globalIlluminationFlags & MaterialGlobalIlluminationFlags.EmissiveIsBlack) == 0;
         if (material.HasProperty("_EmissionEnabled") && !shouldEmissionBeEnabled)
