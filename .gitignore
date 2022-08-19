@@ -62,3 +62,5 @@ Packages/packages-lock.json
 
 # Logs
 Logs/*.log
+Assets/Packages/com.rhinox.odininspector
+Assets/Packages/com.rhinox.odininspector.meta
