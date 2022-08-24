@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Rhinox.Rendering
+namespace Rhinox.Rendering.Universal
 {
     public static class UrpUtility
     {

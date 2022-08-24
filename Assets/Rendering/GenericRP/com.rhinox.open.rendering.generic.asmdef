@@ -1,0 +1,22 @@
+{
+    "name": "com.rhinox.open.rendering.generic",
+    "references": [
+        "GUID:43546d920eff1eb4eb0db5f3c3192563",
+        "GUID:feff8afa3f43cd949972cb65c141a3ef"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "1.0.0",
+            "define": "UNIVERSAL_PIPELINE"
+        }
+    ],
+    "noEngineReferences": false
+}

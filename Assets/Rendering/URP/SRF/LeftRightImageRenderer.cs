@@ -5,7 +5,7 @@ using Rhinox.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LeftRightBackgroundRenderer : ScriptableRendererFeature
+public class LeftRightImageRenderer : ScriptableRendererFeature
 {
     [Serializable]
     public struct LeftRightRendererSettings
@@ -15,15 +15,21 @@ public class LeftRightBackgroundRenderer : ScriptableRendererFeature
         public Texture RightTexture;
     }
     
-    // Note: must be lower capital to be registered in the editor
-    public LeftRightRendererSettings settings = new LeftRightRendererSettings {
-        Event = RenderPassEvent.AfterRenderingSkybox
+    [SerializeField] // Note: must be lower capital to be registered in the editor
+    private LeftRightRendererSettings settings = new LeftRightRendererSettings {
+        Event = RenderPassEvent.BeforeRenderingOpaques
     };
 
     private Material _material;
+    private int _currentEyeDebug;
     
-    public static LeftRightBackgroundRenderer Instance { get; private set; }
-    
+    public static LeftRightImageRenderer Instance { get; private set; }
+
+    ~LeftRightImageRenderer()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
     
     public override void Create()
     {
@@ -33,12 +39,6 @@ public class LeftRightBackgroundRenderer : ScriptableRendererFeature
         _material = new Material(shader);
     }
     
-    protected override void Dispose(bool disposing)
-    {
-        Instance = null;
-        base.Dispose(disposing);
-    }
-
     public void Enable(Texture left, Texture right)
     {
         settings.LeftTexture = left;
