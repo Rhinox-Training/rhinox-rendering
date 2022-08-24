@@ -1,7 +1,7 @@
 {
   "name": "com.rhinox.open.rendering",
   "displayName": "Rhinox.Rendering - Rendering Utils for Unity",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "unity": "2019.3",
   "description": "Rendering Utils for Unity for both Standard rendering and URP.",
   "keywords": [
@@ -11,7 +11,8 @@
   ],
   "category": "Unity",
   "dependencies": {
-    "com.rhinox.open.lightspeed": "1.1.16"
+    "com.rhinox.open.lightspeed": "1.2.4",
+	"com.rhinox.open.utilities": "1.1.14"
   },
   "repository": {
     "type": "git",
