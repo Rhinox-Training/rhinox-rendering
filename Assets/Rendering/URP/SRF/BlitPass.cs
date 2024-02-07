@@ -29,7 +29,7 @@ namespace Rhinox.Rendering.Universal
         protected RenderTargetIdentifier source { get; set; }
         protected RenderTargetIdentifier destination { get; set; }
 
-        protected RenderTargetHandle m_TemporaryColorTexture;
+        protected RenderTextureHandle m_TemporaryColorTexture;
         protected string m_ProfilerTag;
 
         private Dictionary<int, Texture> _availableTextures;
@@ -53,7 +53,7 @@ namespace Rhinox.Rendering.Universal
         public BlitPass(string tag)
         {
             m_ProfilerTag = tag;
-            m_TemporaryColorTexture.Init("_TemporaryColorTexture");
+            m_TemporaryColorTexture = new RenderTextureHandle("_TemporaryColorTexture");
         }
         
 
@@ -62,10 +62,10 @@ namespace Rhinox.Rendering.Universal
         /// </summary>
         /// <param name="source">Source Render Target</param>
         /// <param name="destination">Destination Render Target</param>
-        public void Setup(int source, RenderTargetHandle destination)
+        public void Setup(int source, RenderTextureHandle destination)
         {
             this.source = source;
-            this.destination = destination.id;
+            this.destination = destination;
         }
         
         public void Setup(RenderTargetIdentifier source, RenderTargetIdentifier destination)
@@ -104,19 +104,19 @@ namespace Rhinox.Rendering.Universal
                     cmd.SetGlobalTexture(id, tex);
             }
 
-            // Can't read and write to same color target, create a temp render target to blit. 
-            if (destination == RenderTargetHandle.CameraTarget.id || destination == source)
+            // Can't read and write to same color target, create a temp render target to blit.
+            if (destination == BuiltinRenderTextureType.CameraTarget || destination == source)
             {
-                cmd.GetTemporaryRT(m_TemporaryColorTexture.id, desc, filterMode);
+                m_TemporaryColorTexture.GetTemporaryRT(cmd, desc, filterMode);
                 
                 if (blitMaterial == null)
-                    cmd.Blit(source, m_TemporaryColorTexture.Identifier());
+                    cmd.Blit(source, m_TemporaryColorTexture);
                 else 
-                    cmd.Blit(source, m_TemporaryColorTexture.Identifier(), blitMaterial, blitShaderPassIndex);
+                    cmd.Blit(source, m_TemporaryColorTexture, blitMaterial, blitShaderPassIndex);
                 
-                cmd.Blit(m_TemporaryColorTexture.Identifier(), destination);
+                cmd.Blit(m_TemporaryColorTexture, destination);
                 
-                cmd.ReleaseTemporaryRT(m_TemporaryColorTexture.id);
+                m_TemporaryColorTexture.ReleaseTemporaryRT(cmd);
             }
             else
             {

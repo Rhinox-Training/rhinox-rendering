@@ -60,7 +60,11 @@ public class LeftRightImageRenderer : ScriptableRendererFeature
         _material.SetTexture(ShaderConstants.RightTexture, settings.RightTexture);
         
         var pass = new BlitPass(settings.Event, _material, 0, "LeftRightBackgroundRenderer");
+#if UNITY_2022_1_OR_NEWER
+        pass.Setup(renderer.cameraColorTargetHandle, renderer.cameraColorTargetHandle);
+#else
         pass.Setup(renderer.cameraColorTarget, renderer.cameraColorTarget);
+#endif
         renderer.EnqueuePass(pass);
     }
 

@@ -29,9 +29,17 @@ namespace Rhinox.Rendering.Universal
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
+#if !UNITY_2021_1_OR_NEWER
             _pass.Setup(renderer.cameraColorTarget, settings.TargetTexture);
-
+#endif
             renderer.EnqueuePass(_pass);
         }
+        
+        public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
+        {
+#if UNITY_2021_1_OR_NEWER
+            _pass.Setup(renderer.cameraColorTargetHandle, settings.TargetTexture);
+#endif
+        } 
     }
 }
