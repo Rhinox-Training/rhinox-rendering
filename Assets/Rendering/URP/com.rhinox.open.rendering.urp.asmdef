@@ -1,10 +1,10 @@
 {
     "name": "com.rhinox.open.rendering.urp",
     "references": [
-        "Unity.RenderPipelines.Core.Runtime",
-        "Unity.RenderPipelines.Universal.Runtime",
         "com.rhinox.open.lightspeed",
-        "com.rhinox.open.rendering"
+        "com.rhinox.open.rendering",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

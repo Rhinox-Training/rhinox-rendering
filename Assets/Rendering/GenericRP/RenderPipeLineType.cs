@@ -4,7 +4,7 @@ using Rhinox.Rendering.Universal;
 
 namespace Rhinox.Rendering.Extensions
 {
-    public enum RenderPipeLineType
+    public enum RenderPipelineType
     {
         Auto,
         BuiltIn,
@@ -15,14 +15,14 @@ namespace Rhinox.Rendering.Extensions
     public static class RenderPipelineUtility
     {
         // TODO add support for HDRP
-        public static RenderPipeLineType ResolveAutoRenderPipelineType()
+        public static RenderPipelineType ResolveRenderPipelineType()
         {
 #if UNIVERSAL_PIPELINE
             if (UrpUtility.IsInURP())
-                return RenderPipeLineType.URP;
+                return RenderPipelineType.URP;
 #endif
 
-            return RenderPipeLineType.BuiltIn;
+            return RenderPipelineType.BuiltIn;
         }
     }
 }

@@ -15,14 +15,14 @@ namespace Rhinox.Rendering.Extensions
         }
 
 
-        private static int GetColorProperty(RenderPipeLineType pipeline)
+        private static int GetColorProperty(RenderPipelineType pipeline)
         {
-            if (pipeline == RenderPipeLineType.Auto)
-                pipeline = RenderPipelineUtility.ResolveAutoRenderPipelineType();
+            if (pipeline == RenderPipelineType.Auto)
+                pipeline = RenderPipelineUtility.ResolveRenderPipelineType();
 
             switch (pipeline)
             {
-                case RenderPipeLineType.BuiltIn:
+                case RenderPipelineType.BuiltIn:
                 default:
                     return ShaderConstants.Color;
             }

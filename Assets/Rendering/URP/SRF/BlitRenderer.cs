@@ -30,16 +30,19 @@ namespace Rhinox.Rendering.Universal
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
 #if !UNITY_2021_1_OR_NEWER
+            // In URP 12 SetupRenderPasses was added and this moved there.
+            // See https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@16.0/manual/upgrade-guide-2023-1.html
             _pass.Setup(renderer.cameraColorTarget, settings.TargetTexture);
 #endif
             renderer.EnqueuePass(_pass);
         }
         
+#if UNITY_2021_1_OR_NEWER 
         public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
         {
-#if UNITY_2021_1_OR_NEWER
             _pass.Setup(renderer.cameraColorTargetHandle, settings.TargetTexture);
-#endif
         } 
+#endif
+
     }
 }

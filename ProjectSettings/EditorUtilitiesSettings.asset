@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4798b6dc9af0068478d1b5ef16187f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowSelectionInfoInSceneOverlay: 0
+  ShowSelectionInfoInHierarchy: 0
+  OverrideFocusBehaviour: 0
+  DefaultBoundsSize: 1
+  OverrideTransformInspector: 1
+  OverrideMeshFilterInspector: 1
+  EnableCustomIconsInHierarchy: 0
+  Entries:
+  - Type:
+      _assemblyName: UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _assemblyQualifiedName: UnityEngine.Light, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _name: Light
+    Icon: {fileID: -1477008817101679558, guid: 0000000000000000d000000000000000, type: 0}
+    Setting: 0
+    OverrideIcon: {fileID: -1477008817101679558, guid: 0000000000000000d000000000000000,
+      type: 0}
+  - Type:
+      _assemblyName: UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      _assemblyQualifiedName: UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _name: Camera
+    Icon: {fileID: -9002153236391373477, guid: 0000000000000000d000000000000000, type: 0}
+    Setting: 0
+    OverrideIcon: {fileID: -9002153236391373477, guid: 0000000000000000d000000000000000,
+      type: 0}
