@@ -31,24 +31,24 @@ namespace Rhinox.Rendering.Extensions
         
         public static Color GetColor(this Renderer ren) => GetColor(ren, true);
 
-        public static Color GetColor(this Renderer ren, bool propertyBlockIfAvailable)
+        public static Color GetColor(this Renderer ren, bool propertyBlockIfAvailable, int materialIndex = 0)
         {
             var block = new MaterialPropertyBlock();
             if (propertyBlockIfAvailable && ren.HasPropertyBlock())
             {
-                ren.GetPropertyBlock(block);
+                ren.GetPropertyBlock(block, materialIndex);
                 return block.GetColor(ShaderConstants.ColorURP);
             }
 
-            return ren.sharedMaterial.GetColor(ShaderConstants.ColorURP);
+            return ren.sharedMaterials[materialIndex].GetColor(ShaderConstants.ColorURP);
         }
 
-        public static void SetColor(this Renderer ren, Color color)
+        public static void SetColor(this Renderer ren, Color color, int materialIndex = 0)
         {
             var block = new MaterialPropertyBlock();
-            ren.GetPropertyBlock(block);
+            ren.GetPropertyBlock(block, materialIndex);
             block.SetColor(ShaderConstants.ColorURP, color);
-            ren.SetPropertyBlock(block);
+            ren.SetPropertyBlock(block, materialIndex);
         }
     }
 }
