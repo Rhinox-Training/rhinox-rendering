@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 #if UNIVERSAL_PIPELINE
@@ -28,19 +29,20 @@ namespace Rhinox.Rendering.Extensions
             }
         }
 
-        
+
         public static Color GetColor(this Renderer ren) => GetColor(ren, true);
 
         public static Color GetColor(this Renderer ren, bool propertyBlockIfAvailable, int materialIndex = 0)
         {
-            var block = new MaterialPropertyBlock();
             if (propertyBlockIfAvailable && ren.HasPropertyBlock())
             {
+                var block = new MaterialPropertyBlock();
                 ren.GetPropertyBlock(block, materialIndex);
                 return block.GetColor(ShaderConstants.ColorURP);
             }
 
-            return ren.sharedMaterials[materialIndex].GetColor(ShaderConstants.ColorURP);
+            return ren.sharedMaterials[materialIndex].HasColor(ShaderConstants.ColorURP) ?
+                ren.sharedMaterials[materialIndex].GetColor(ShaderConstants.ColorURP) : Color.magenta;
         }
 
         public static void SetColor(this Renderer ren, Color color, int materialIndex = 0)
